@@ -15,6 +15,10 @@ mongoose.connect(process.env.MONGO_URL, {
   useUnifiedTopology: true,
 });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
